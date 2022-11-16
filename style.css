@@ -1,0 +1,42 @@
+body {
+    font-size: 19px;
+}
+
+h1 {
+    color: #999999;
+    font-family: arial, sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+    }
+
+h2 {
+    color: #2d2d2d;
+    font-family: arial, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+    }
+
+
+table{
+    width: 50%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    text-align: left;
+}
+tr {
+    border-bottom: 1px solid #cbcbcb;
+}
+th, td{
+    border: none;
+    height: 30px;
+    padding: 2px;
+}
+tr:hover {
+    background: #F5F5F5;
+}
