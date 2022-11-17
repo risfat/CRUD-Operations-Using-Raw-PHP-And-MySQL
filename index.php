@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<?php  include('addEmployee.php'); ?>
+<?php  include('db.php'); ?>
 <?php  include('updateEmployee.php'); ?>
 <?php  include('deleteEmployee.php'); ?>
 <h1>CRUD Operations Using Raw PHP & MySQL</h1>
@@ -29,7 +29,7 @@
 				?>
 			</div>
 		<?php endif ?>
-		<form method="post" action="addEmployee.php" >
+		<form method="post" action="db.php" >
 			<div class="mb-3">
 				<label for="name" class="form-label">Employee Name</label>
 				<input type="text" class="form-control" name="name" value="<?php echo $name; ?>" placeholder="Risfat Amin">
@@ -76,10 +76,36 @@
 		</form>
 	</div>
 
-	<?php $results = mysqli_query($db, "SELECT * FROM employees"); ?>
+	<?php 
+
+	if (isset($_POST['search'])) {
+
+		$search = $_POST['search'];
+
+		$sql = "select * from employees where name like '%$search%'";
+
+		$results = $db->query($sql);
+		// header('location: index.php');
+	}else{
+		$results = mysqli_query($db, "SELECT * FROM employees"); 
+	}
+
+	?>
 
 	<div class="container-sm">
-	<h2>All Employees</h2> 
+		<h2>All Employees</h2><br>
+		<form method="post" action="index.php">
+			<div class="row height d-flex justify-content-center align-items-center">
+
+					<div class="col-auto">
+						<input type="text" name="search" class="form-control" placeholder="Search Employees">
+					</div>
+					<div class="col-auto">
+						<button class="btn btn-primary" type="submit">Search</button>
+					</div>
+						
+			</div>
+		</form>
 		<table class="table">
 			<thead>
 				<tr>
@@ -94,7 +120,7 @@
 					<th scope="col" colspan="2">Action</th>
 				</tr>
 			</thead>
-			
+
 			<?php while ($row = mysqli_fetch_array($results)) { ?>
 				<tr>
 					<td><?php echo $row['id']; ?></td>
